@@ -31,9 +31,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  # Íconos de Material Design
   cupertino_icons: ^1.0.8
+
+  # Base de datos SQLite local — Requisito técnico del proyecto
+  sqflite: ^2.4.2
+
+  # Obtener rutas del sistema de archivos del dispositivo (necesario para sqflite)
+  path_provider: ^2.1.5
+
+  # Utilidades de ruta de archivos
+  path: ^1.9.1
+
+  # Internacionalización y formato de fechas en español
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
