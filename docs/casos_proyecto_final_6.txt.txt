@@ -1,0 +1,42 @@
+CASO 6: REVISTAS, S.A.
+
+Con el objeto de mejorar el proceso de entrega de las revistas a los suscriptores, la empresa "Revistas, S.A." que distribuye varias revistas en el país, ha decidido llevar un registro computarizado de dichas entregas y para ello es necesario diseñar una base de datos con la siguiente información.
+
+Se llevará registro de qué empleado está entregando el ejemplar. Se tendrá registro de la fecha programada de entrega y la fecha precisa de su entrega, así como también de cualquier observación que deba anotarse de dicha entrega.
+
+Como parte importante a considerar para el diseño de la base de datos, un cliente puede tener suscripciones a varias revistas que distribuye la empresa. Es importante tomar en cuenta que el cliente tiene un número de suscripción para cada una de ellas, es decir, cada suscripción es única para cada revista, aunque sea el mismo cliente.
+
+EJEMPLO DEL CASO
+
+Revistas, S.A.
+
+Suscripción No. 20800121
+
+Fecha: Abril 29, 2008
+
+Nombre Cliente: Manuel Coronado
+NIT: 20408-M
+
+Para cobro en:
+Dirección: 21 calle 13-28 Zona 2
+Teléfono: 3784-9605
+
+Para entrega en:
+Dirección: 12 calle 1-28 Zona 9
+Teléfono: 2121-1212
+
+Validez de suscripción:
+Fecha inicio: 01/05/2013
+Fecha de finalización: 30/04/2014
+
+Revista:
+Mundo de Tecnología
+
+
+REGISTRO DE ENVÍOS
+
+Envío No. | Revista No. | Fecha Programada de Entrega | Empleado Asignado | Fecha de Entrega | Observaciones
+
+289 | 5 | 14/01/2013 | Juan Pérez | 14/01/2013 |
+521 | 6 | 18/02/2013 | Mario López | 19/02/2013 |
+867 | 7 | 16/03/2013 | Juan Pérez | 16/03/2013 |
