@@ -206,7 +206,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 24),
 
-                    // --- Sección Reportes ---
+                    // --- Accesos rápidos ---
+                    _SectionTitle(
+                      icon: Icons.flash_on,
+                      titulo: 'Accesos rápidos',
+                      color: cs.primary,
+                    ),
+                    const SizedBox(height: 12),
+                    _AccesoRapido(
+                      icono: Icons.add_box,
+                      titulo: 'Nueva Entrega',
+                      subtitulo: 'Registrar un nuevo envío',
+                      color: cs.primary,
+                      onTap: () => _navegar(
+                        const EntregasScreen(abrirFormulario: true),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    _AccesoRapido(
+                      icono: Icons.person_add,
+                      titulo: 'Nuevo Cliente',
+                      subtitulo: 'Registrar un nuevo cliente',
+                      color: Colors.teal.shade700,
+                      onTap: () => _navegar(const ClientesScreen(abrirFormulario: true)),
+                    ),
+                    const SizedBox(height: 8),
+                    _AccesoRapido(
+                      icono: Icons.badge,
+                      titulo: 'Empleados',
+                      subtitulo: 'Gestionar empleados',
+                      color: Colors.brown.shade600,
+                      onTap: () => _navegar(const EmpleadosScreen()),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // --- Sección Reportes (Hasta abajo) ---
                     _SectionTitle(
                       icon: Icons.analytics,
                       titulo: 'Centro de Reportes',
@@ -267,48 +301,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-
-                    // --- Accesos rápidos ---
-                    _SectionTitle(
-                      icon: Icons.flash_on,
-                      titulo: 'Accesos rápidos',
-                      color: cs.primary,
-                    ),
-                    const SizedBox(height: 12),
-                    _AccesoRapido(
-                      icono: Icons.add_box,
-                      titulo: 'Nueva Entrega',
-                      subtitulo: 'Registrar un nuevo envío',
-                      color: cs.primary,
-                      onTap: () => _navegar(
-                        const EntregasScreen(abrirFormulario: true),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    _AccesoRapido(
-                      icono: Icons.person_add,
-                      titulo: 'Nuevo Cliente',
-                      subtitulo: 'Registrar un nuevo cliente',
-                      color: Colors.teal.shade700,
-                      onTap: () => _navegar(const ClientesScreen(abrirFormulario: true)),
-                    ),
-                    const SizedBox(height: 8),
-                    _AccesoRapido(
-                      icono: Icons.badge,
-                      titulo: 'Empleados',
-                      subtitulo: 'Gestionar empleados',
-                      color: Colors.brown.shade600,
-                      onTap: () => _navegar(const EmpleadosScreen()),
-                    ),
-                    const SizedBox(height: 8),
-                    _AccesoRapido(
-                      icono: Icons.table_chart,
-                      titulo: 'Exportar Reportes',
-                      subtitulo: 'Descargar datos en PDF / Excel',
-                      color: Colors.indigo.shade700,
-                      onTap: () => _navegar(const ReportesScreen()),
                     ),
                     const SizedBox(height: 24),
                   ],

@@ -25,8 +25,8 @@ class ReporteService {
   final SuscripcionRepository _suscripcionRepo = SuscripcionRepository();
   final EntregaRepository _entregaRepo = EntregaRepository();
 
-  final _formatoFechaHora = DateFormat('dd/MM/yyyy HH:mm', 'es');
-  final _formatoFecha = DateFormat('dd/MM/yyyy', 'es');
+  final _formatoFechaHora = DateFormat('dd/MM/yyyy HH:mm');
+  final _formatoFecha = DateFormat('dd/MM/yyyy');
 
   String _formatearFecha(String? fechaIso) {
     if (fechaIso == null || fechaIso.trim().isEmpty) return '-';
@@ -739,7 +739,7 @@ class ReporteService {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         children: [
           pw.Text(
-            'Revistas, S.A. — Documento Informativo Oficial',
+            'Revistas, S.A. - Documento Informativo Oficial',
             style: const pw.TextStyle(fontSize: 8, color: PdfColors.grey600),
           ),
           pw.Text(

@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../services/reporte_service.dart';
 import '../../database/database_helper.dart';
@@ -66,10 +67,17 @@ class _ReportesScreenState extends State<ReportesScreen> {
       final fechaStr = DateTime.now().toIso8601String().substring(0, 10);
       final nombreArchivo = 'Reporte_General_RevistasSA_$fechaStr.pdf';
 
-      if (!mounted) return;
-      await _reporteService.previsualizarPdf(
+      final ruta = await _reporteService.guardarArchivoEnDispositivo(
         bytes: pdfBytes,
         nombreArchivo: nombreArchivo,
+      );
+
+      if (!mounted) return;
+      _mostrarDialogoExitoPdf(
+        titulo: 'Reporte General en PDF',
+        rutaArchivo: ruta,
+        nombreArchivo: nombreArchivo,
+        bytes: pdfBytes,
       );
     } catch (e) {
       if (mounted) {
@@ -116,10 +124,17 @@ class _ReportesScreenState extends State<ReportesScreen> {
       final fechaStr = DateTime.now().toIso8601String().substring(0, 10);
       final nombreArchivo = 'Reporte_${_entidadSeleccionada.toUpperCase()}_$fechaStr.pdf';
 
-      if (!mounted) return;
-      await _reporteService.previsualizarPdf(
+      final ruta = await _reporteService.guardarArchivoEnDispositivo(
         bytes: pdfBytes,
         nombreArchivo: nombreArchivo,
+      );
+
+      if (!mounted) return;
+      _mostrarDialogoExitoPdf(
+        titulo: 'Reporte de ${_entidadesConfig[_entidadSeleccionada]?['titulo']} en PDF',
+        rutaArchivo: ruta,
+        nombreArchivo: nombreArchivo,
+        bytes: pdfBytes,
       );
     } catch (e) {
       if (mounted) {
@@ -280,6 +295,76 @@ class _ReportesScreenState extends State<ReportesScreen> {
             icon: const Icon(Icons.open_in_new),
             label: const Text('Abrir Excel'),
             style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade700),
+            onPressed: () {
+              Navigator.pop(ctx);
+              _reporteService.abrirArchivo(rutaArchivo);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _mostrarDialogoExitoPdf({
+    required String titulo,
+    required String rutaArchivo,
+    required String nombreArchivo,
+    required Uint8List bytes,
+  }) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(Icons.check_circle, color: Colors.red.shade700),
+            const SizedBox(width: 8),
+            const Expanded(child: Text('Documento PDF Generado')),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(titulo, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(
+              'Archivo: $nombreArchivo',
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Guardado en:\n$rutaArchivo',
+              style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton.icon(
+            icon: const Icon(Icons.print),
+            label: const Text('Imprimir'),
+            onPressed: () {
+              Navigator.pop(ctx);
+              _reporteService.previsualizarPdf(
+                bytes: bytes,
+                nombreArchivo: nombreArchivo,
+              );
+            },
+          ),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.share),
+            label: const Text('Compartir'),
+            onPressed: () {
+              Navigator.pop(ctx);
+              _reporteService.compartirArchivo(
+                rutaArchivo: rutaArchivo,
+                texto: 'Reporte PDF generado: $nombreArchivo',
+              );
+            },
+          ),
+          ElevatedButton.icon(
+            icon: const Icon(Icons.picture_as_pdf),
+            label: const Text('Abrir PDF'),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade700),
             onPressed: () {
               Navigator.pop(ctx);
               _reporteService.abrirArchivo(rutaArchivo);
