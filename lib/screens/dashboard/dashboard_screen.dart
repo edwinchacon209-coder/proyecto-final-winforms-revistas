@@ -8,6 +8,7 @@ import '../revistas/revistas_screen.dart';
 import '../empleados/empleados_screen.dart';
 import '../suscripciones/suscripciones_screen.dart';
 import '../entregas/entregas_screen.dart';
+import '../reportes/reportes_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -95,6 +96,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.assessment),
+            tooltip: 'Centro de Reportes',
+            onPressed: () => _navegar(const ReportesScreen()),
+          ),
           IconButton(
             icon: const Icon(Icons.refresh),
             tooltip: 'Actualizar',
@@ -200,6 +206,70 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 24),
 
+                    // --- Sección Reportes ---
+                    _SectionTitle(
+                      icon: Icons.analytics,
+                      titulo: 'Centro de Reportes',
+                      color: Colors.indigo.shade700,
+                    ),
+                    const SizedBox(height: 12),
+                    Card(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      clipBehavior: Clip.antiAlias,
+                      child: InkWell(
+                        onTap: () => _navegar(const ReportesScreen()),
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.indigo.shade800,
+                                const Color(0xFF1565C0),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.2),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.picture_as_pdf, color: Colors.white, size: 28),
+                              ),
+                              const SizedBox(width: 14),
+                              const Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Generación de Reportes',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      'PDF y Excel (.xlsx) General o Específico',
+                                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+
                     // --- Accesos rápidos ---
                     _SectionTitle(
                       icon: Icons.flash_on,
@@ -231,6 +301,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       subtitulo: 'Gestionar empleados',
                       color: Colors.brown.shade600,
                       onTap: () => _navegar(const EmpleadosScreen()),
+                    ),
+                    const SizedBox(height: 8),
+                    _AccesoRapido(
+                      icono: Icons.table_chart,
+                      titulo: 'Exportar Reportes',
+                      subtitulo: 'Descargar datos en PDF / Excel',
+                      color: Colors.indigo.shade700,
+                      onTap: () => _navegar(const ReportesScreen()),
                     ),
                     const SizedBox(height: 24),
                   ],

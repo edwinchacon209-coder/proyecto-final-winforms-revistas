@@ -4,7 +4,7 @@ Aplicación móvil desarrollada en Flutter para la gestión de entregas y suscri
 
 ## 📦 Información de Entrega
 
-El archivo ejecutable para Android (**APK**) necesario para instalar y evaluar la aplicación se encuentra en la carpeta `Entregable`:
+El archivo ejecutable para Android (**APK**) actualizado y listo para instalar se encuentra en la carpeta `Entregable`:
 
 👉 **[Descargar APK (app-release.apk)](Entregable/app-release.apk)**
 
@@ -22,45 +22,50 @@ Para instalar la aplicación en un dispositivo Android físico, sigue estos paso
 
 ---
 
-## 🛠️ Características Implementadas
+## 🚀 Nuevas Funcionalidades: Módulo de Reportes & Exportación
 
-La aplicación fue desarrollada utilizando **Clean Architecture** (Arquitectura Limpia) con el patrón Repository y persistencia de datos local a través de **SQLite**.
+En esta actualización se incorporó un módulo completo de reportes ejecutivos:
 
-### 1. Base de Datos (SQLite)
-* Tablas implementadas con todas las restricciones de integridad y **Foreign Keys (PRAGMA foreign_keys = ON)**:
-  * `clientes`
-  * `revistas`
-  * `empleados`
-  * `suscripciones`
-  * `entregas`
-* Inserción automática de **datos de demostración** al crear la base de datos por primera vez.
-* Manejo robusto de excepciones para evitar eliminar o modificar registros que están siendo referenciados (ej. no se puede eliminar un cliente si ya tiene suscripciones).
+### 📄 1. Reporte General Consolidado
+* **Reporte General en PDF:** Documento formal con diseño corporativo en azul institucional, tabla de indicadores KPI de operaciones (Total clientes, revistas, empleados, suscripciones, entregas realizadas, pendientes y atrasadas), detalle de suscripciones y bitácora completa de entregas con numeración de páginas.
+* **Reporte General en Excel (.xlsx):** Libro de cálculo con múltiples hojas de trabajo independientes con formato de celdas y cabeceras:
+  1. *Resumen Ejecutivo*
+  2. *Clientes*
+  3. *Revistas*
+  4. *Empleados*
+  5. *Suscripciones*
+  6. *Entregas*
 
-### 2. Módulos y Flujos (CRUD Completo)
-* **Dashboard:** Tarjetas informativas con contadores en tiempo real sobre los registros en la base de datos.
-* **Clientes:** Registro, actualización, eliminación y búsqueda (por nombre o NIT).
-* **Revistas:** Gestión del catálogo de revistas y frecuencias.
-* **Empleados:** Gestión del personal encargado de las entregas.
-* **Suscripciones:** Relación entre Cliente y Revista con fechas de inicio y fin (usando selectores de fecha nativos).
-* **Entregas (Módulo Núcleo):**
-  * Vista dividida en 3 pestañas: **Pendientes**, **Atrasadas** (fecha programada vencida) y **Realizadas**.
-  * Restricción: No se puede crear una entrega si no existe una suscripción y un empleado asignado.
-  * **Flujo "Marcar Entregada":** Las entregas pendientes pueden deslizarse (Swipe) o tocarse para confirmarlas y pasarlas al estado de "Realizadas", guardando la fecha exacta en la que se entregaron.
+### 📊 2. Reportes Específicos (Menú Desplegable)
+Permite seleccionar desde un menú desplegable cualquier módulo del sistema para exportar sus datos dedicados tanto en **PDF** como en **Excel (.xlsx)**:
+* 👥 **Clientes:** Listado con NIT, nombres completos, direcciones de entrega y teléfonos.
+* 📖 **Revistas:** Catálogo de publicaciones y títulos registrados.
+* 🪪 **Empleados:** Plantilla de personal repartidor y mensajeros.
+* 📑 **Suscripciones:** Detalle de suscripciones con cliente, revista y fechas de vigencia.
+* 🚚 **Entregas:** Bitácora clasificada por estado (Realizada, Pendiente, Atrasada) con empleado asignado y observaciones.
 
-### 3. Interfaz de Usuario (UI)
-* Diseño corporativo y profesional basado en **Material Design 3** con una paleta de colores azul institucional.
-* Manejo centralizado de formularios mediante diálogos reutilizables para mantener la consistencia en todas las pantallas.
-* Validaciones en tiempo real para evitar campos obligatorios vacíos.
+### 🔄 3. Datos de Prueba Ampliados y Herramienta de Demostración
+* Base de datos SQLite enriquecida para pruebas completas y académicas:
+  * **8 Clientes** en diversas zonas y departamentos de Guatemala.
+  * **7 Revistas** temáticas (Negocios, Tecnología, Salud, Cocina, Ciencia, Viajes, Deportes).
+  * **5 Empleados repartidores**.
+  * **14 Suscripciones activas** con reglas de negocio íntegras.
+  * **20 Entregas** con estados reales (8 realizadas, 6 pendientes y 6 atrasadas).
+* **Botón de Restablecimiento In-App:** En la pantalla de Reportes se incluye la opción *"Cargar Datos de Demostración"* para repoblar la base de datos local en cualquier momento con un solo toque.
 
 ---
 
-## 👨‍💻 Tecnologías Utilizadas
+## 🛠️ Arquitectura y Tecnologías
 
-* **Framework:** Flutter SDK
+La aplicación fue desarrollada utilizando **Clean Architecture** (Arquitectura Limpia) con el patrón Repository y persistencia de datos local a través de **SQLite**:
+
+* **Framework:** Flutter SDK (Material 3)
 * **Lenguaje:** Dart
-* **Base de Datos:** SQLite (paquete `sqflite`)
-* **Arquitectura:** Patrón Repositorio
+* **Base de Datos:** SQLite (`sqflite`) con claves foráneas activas (`PRAGMA foreign_keys = ON`)
+* **Generación de PDF:** `pdf` y `printing` (permite visualización interactiva, impresión y guardado nativo)
+* **Generación de Excel:** `excel` (creación de libros `.xlsx` con hojas y estilos)
+* **Compartición y Apertura:** `share_plus` y `open_filex`
 * **Control de Versiones:** Git / GitHub
 
 ---
-*Desarrollado para la evaluación final académica del caso práctico "Revistas, S.A."*
+*Desarrollado para la evaluación académica del caso de negocio "Revistas, S.A."*
